@@ -31,5 +31,5 @@ def bisec(low_x, high_x):
             return bisec(low_x, high_x), bisec(high_x, new_high_x)
             
          
-print(bisec(-3, 2))
+print(bisec(-3, 1))
 
