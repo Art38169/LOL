@@ -92,5 +92,3 @@ plt.ylabel("Iterations")
 plt.xlabel("Error")
 plt.legend()
 plt.show()
-
-
