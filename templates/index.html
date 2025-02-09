@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Finder</title>
+</head>
+<body>
+    <h1>Root Finder</h1>
+    <form action="/" method="POST">
+        <label for="function">Function (e.g., x**2 - 5*sin(x) + x - 1):</label><br>
+        <input type="text" id="function" name="function" required><br><br>
+        
+        <label for="interval_a">Interval Start (a):</label><br>
+        <input type="number" id="interval_a" name="interval_a" required><br><br>
+        
+        <label for="interval_b">Interval End (b):</label><br>
+        <input type="number" id="interval_b" name="interval_b" required><br><br>
+        
+        <label for="tolerance">Tolerance:</label><br>
+        <input type="number" id="tolerance" name="tolerance" step="0.0001" required><br><br>
+        
+        <input type="submit" value="Find Roots">
+    </form>
+    
+    {% if root_newton is not none %}
+    <h2>Results:</h2>
+    <p>Newton Method Root: {{ root_newton }} (Iterations: {{ iterations_newton }})</p>
+    <p>Bisection Method Root: {{ root_bisection }} (Iterations: {{ iterations_bisection }})</p>
+    
+    <h3>Convergence Graph</h3>
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Convergence Graph">
+    {% endif %}
+</body>
+</html>
