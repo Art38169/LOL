@@ -1,39 +1,37 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 x_i = []
 y_i = []
-A = []
 a = 0
-b = 4
-m = 10
+b = 3
+m = 4
 
 
 def f(x):
-    return np.sin(5 * x)
+    return np.sin(x)
 
 
 for i in range(m):
     x_i.append(a + (b - a) * i/(m-1))
     y_i.append(f(a + (b - a) * i/(m-1)))
-    
-
-for i in range(m):
-    row = []
-    for j in range(m):
-        row.append(x_i[i] ** j)
-    A.append(row)
 
 
-sol_matrix = np.linalg.solve(A, y_i)
-
-def interpolate(x):
-    y = 0
+def lagrange(x, a):
+    y = 1
     for i in range(m):
-        y += sol_matrix[i] * (x ** i)
+        if i != a:
+            y *= (x - x_i[i])
+            y /= (x_i[a] - x_i[i])
     return y
 
+
+def interpolate(x):
+    p_x = 0
+
+    for i in range(m):
+        p_x += y_i[i] * lagrange(x, i)
+    return p_x
 
 point_x = np.linspace(a, b, 100)
 point_y = interpolate(point_x)
@@ -47,7 +45,3 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.legend()
 plt.show()
-
-
-
-
