@@ -41,6 +41,7 @@ print(f"c is: {c}")
 
 x_fine = np.linspace(1, 5, 1000)
 g_values = g(x_fine, c)
+
 plt.plot(x_fine, g_values, color = 'orange', label = 'Regression Line')
 plt.scatter(x, y, label = 'Data Points')
 plt.xlabel('x')
